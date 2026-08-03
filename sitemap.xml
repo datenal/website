@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
@@ -44,8 +43,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Service Pages -->
-
   <url>
     <loc>https://datenal.co.za/services/it-support.html</loc>
     <lastmod>2026-08-03</lastmod>
@@ -87,8 +84,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Legal Pages -->
 
   <url>
     <loc>https://datenal.co.za/privacy-policy.html</loc>
