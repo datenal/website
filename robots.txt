@@ -1,0 +1,13 @@
+# robots.txt for Datenal Technologies
+# https://datenal.co.za
+
+User-agent: *
+Allow: /
+
+# Block 
+Disallow: /private/
+Disallow: /admin/
+Disallow: /cgi-bin/
+
+# Sitemap
+Sitemap: https://datenal.co.za/sitemap.xml
