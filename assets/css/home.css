@@ -577,8 +577,8 @@ footer li a:hover {
         font-size: clamp(14px, 2.5vw, 17px);
     }
     .logo img {
-        height: 55px;
-        width: auto;
+        height: 90px;
+        width: 175px;
     }
     .hero {
         min-height: 500px;
