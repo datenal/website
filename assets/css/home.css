@@ -55,7 +55,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     font-weight: 800;
     font-size: clamp(16px, 2vw, 20px);
     color: #0A3D91;
@@ -63,8 +63,8 @@ header {
     flex-shrink: 0;
 }
 .logo img {
-    height: 75px;
-    width: auto;
+    height: 120px;
+    width: 200px;
     object-fit: contain;
     max-width: 100%;
 }
