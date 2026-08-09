@@ -35,40 +35,7 @@
     <meta name="theme-color" content="#ffffff" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="/assets/css/request-form.css" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Request a Service | Datenal Technologies",
-      "description": "Submit a structured service request for IT support, networking, website development, hosting, hardware, software solutions, and more. Get a professional response from Datenal Technologies.",
-      "url": "https://datenal.co.za/support/request-form/",
-      "isPartOf": {
-        "@type": "Organization",
-        "name": "Datenal Technologies",
-        "url": "https://datenal.co.za/",
-        "logo": "https://datenal.co.za/assets/images/datenal-logo.png"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://datenal.co.za/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Request Form",
-            "item": "https://datenal.co.za/support/request-form/"
-          }
-        ]
-      }
-    }
-    </script>
+    <link rel="stylesheet" href="request-form.css" />
 </head>
 <body>
 
@@ -112,42 +79,42 @@
         <div class="form-wrapper">
 
             <div class="form-card" id="formContainer">
-                <form id="requestForm" novalidate>
+                <form id="requestForm" enctype="multipart/form-data" novalidate>
 
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-user"></i> Contact Information</div>
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" id="firstNameGroup">
                                 <label for="firstName">First Name <span class="required">*</span></label>
-                                <input type="text" id="firstName" placeholder="Enter your first name" required />
+                                <input type="text" id="firstName" name="first_name" placeholder="Enter your first name" required />
                                 <div class="error-message" id="firstNameError">Please enter your first name.</div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="lastNameGroup">
                                 <label for="lastName">Last Name <span class="required">*</span></label>
-                                <input type="text" id="lastName" placeholder="Enter your last name" required />
+                                <input type="text" id="lastName" name="last_name" placeholder="Enter your last name" required />
                                 <div class="error-message" id="lastNameError">Please enter your last name.</div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="businessName">Business Name (optional)</label>
-                                <input type="text" id="businessName" placeholder="Enter your business name" />
+                                <input type="text" id="businessName" name="business_name" placeholder="Enter your business name" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="emailGroup">
                                 <label for="email">Email Address <span class="required">*</span></label>
-                                <input type="email" id="email" placeholder="you@business.co.za" required />
+                                <input type="email" id="email" name="email" placeholder="you@business.co.za" required />
                                 <div class="error-message" id="emailError">Please enter a valid email address.</div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" id="phoneGroup">
                                 <label for="phone">Phone Number <span class="required">*</span></label>
-                                <input type="tel" id="phone" placeholder="+27 12 345 6789" required />
+                                <input type="tel" id="phone" name="phone" placeholder="+27 12 345 6789" required />
                                 <div class="error-message" id="phoneError">Please enter a valid phone number.</div>
                             </div>
                             <div class="form-group">
                                 <label for="contactMethod">Preferred Contact Method</label>
-                                <select id="contactMethod">
+                                <select id="contactMethod" name="contact_method">
                                     <option value="Email">Email</option>
                                     <option value="Phone">Phone</option>
                                     <option value="WhatsApp">WhatsApp</option>
@@ -157,7 +124,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="contactTime">Preferred Contact Time</label>
-                                <select id="contactTime">
+                                <select id="contactTime" name="contact_time">
                                     <option value="Morning">Morning</option>
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
@@ -168,43 +135,49 @@
                     </div>
 
                     <div class="form-section">
-                        <div class="form-section-title"><i class="fa-regular fa-list"></i> Service Required</div>
-                        <div class="form-row-single">
-                            <div class="form-group">
-                                <label for="service">Choose a Service <span class="required">*</span></label>
-                                <select id="service" required>
-                                    <option value="">Select a service...</option>
-                                    <option value="IT Support">IT Support</option>
-                                    <option value="Networking">Networking</option>
-                                    <option value="Website Development">Website Development</option>
-                                    <option value="Website Hosting">Website Hosting</option>
-                                    <option value="Software Solutions">Software Solutions</option>
-                                    <option value="Hardware Support">Hardware Support</option>
-                                    <option value="Remote Support">Remote Support</option>
-                                    <option value="Email Solutions">Email Solutions</option>
-                                    <option value="Cyber Security">Cyber Security</option>
-                                    <option value="Cloud Services">Cloud Services</option>
-                                    <option value="Software Installation">Software Installation</option>
-                                    <option value="Business Consultation">Business Consultation</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <div class="error-message" id="serviceError">Please select a service.</div>
+                        <div class="form-section-title"><i class="fa-regular fa-list"></i> Service Request Builder</div>
+                        <div id="builderContainer">
+                            <!-- Primary row (always visible) -->
+                            <div class="builder-row builder-primary" id="primaryRow">
+                                <div>
+                                    <label>Service <span class="required">*</span></label>
+                                    <select id="primaryService" name="selected_service" required>
+                                        <option value="">Select a service...</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Package / Service Option</label>
+                                    <select id="primaryPackageSelect">
+                                        <option value="">Select package or option...</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Billing</label>
+                                    <select id="primaryBilling">
+                                        <option value="Once-off">Once-off</option>
+                                        <option value="Recurring">Recurring</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Qty</label>
+                                    <input id="primaryQty" type="number" min="1" value="1">
+                                </div>
+                                <div style="display:flex;align-items:end;padding-bottom:4px;">
+                                    <button type="button" class="btn btn-primary" id="addPrimaryBtn" style="padding:10px 14px;font-size:13px;">＋ Add</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row-single" id="otherServiceContainer" style="display:none;">
-                            <div class="form-group">
-                                <label for="otherService">Please describe the service</label>
-                                <input type="text" id="otherService" placeholder="Describe the service you need..." />
-                            </div>
+                            <div id="addedServicesContainer"></div>
+                            <button type="button" class="btn btn-outline" style="border-color:#0A3D91;color:#0A3D91;margin-top:6px;" id="addServiceBtn">＋ Add Another Service</button>
+                            <div class="builder-error" id="builderError">Please add at least one service request item.</div>
                         </div>
                     </div>
 
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-tag"></i> Request Type</div>
                         <div class="form-row-single">
-                            <div class="form-group">
+                            <div class="form-group" id="requestTypeGroup">
                                 <label for="requestType">Choose one <span class="required">*</span></label>
-                                <select id="requestType" required>
+                                <select id="requestType" name="request_type" required>
                                     <option value="">Select a request type...</option>
                                     <option value="New Project">New Project</option>
                                     <option value="Technical Support">Technical Support</option>
@@ -235,9 +208,9 @@
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-heading"></i> Subject</div>
                         <div class="form-row-single">
-                            <div class="form-group">
+                            <div class="form-group" id="subjectGroup">
                                 <label for="subject">Brief summary of your request <span class="required">*</span></label>
-                                <input type="text" id="subject" placeholder="e.g., Email configuration issue on multiple devices" required />
+                                <input type="text" id="subject" name="subject" placeholder="e.g., Email configuration issue on multiple devices" required />
                                 <div class="error-message" id="subjectError">Please enter a subject.</div>
                             </div>
                         </div>
@@ -246,9 +219,9 @@
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-message"></i> Request Details</div>
                         <div class="form-row-single">
-                            <div class="form-group">
+                            <div class="form-group" id="detailsGroup">
                                 <label for="details">Please describe your request in as much detail as possible. <span class="required">*</span></label>
-                                <textarea id="details" placeholder="Please describe your request in as much detail as possible.&#10;&#10;Examples:&#10;• What is happening?&#10;• When did it start?&#10;• What outcome are you expecting?&#10;• Any relevant information that could help us?" required></textarea>
+                                <textarea id="details" name="request_details" placeholder="Please describe your request in as much detail as possible.&#10;&#10;Examples:&#10;• What is happening?&#10;• When did it start?&#10;• What outcome are you expecting?&#10;• Any relevant information that could help us?" required></textarea>
                                 <div class="error-message" id="detailsError">Please describe your request (minimum 10 characters).</div>
                             </div>
                         </div>
@@ -259,21 +232,21 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="website">Business Website (optional)</label>
-                                <input type="url" id="website" placeholder="https://yourbusiness.co.za" />
+                                <input type="url" id="website" name="website" placeholder="https://yourbusiness.co.za" />
                             </div>
                             <div class="form-group">
                                 <label for="employees">Number of Employees (optional)</label>
-                                <input type="number" id="employees" placeholder="e.g., 10" min="1" />
+                                <input type="number" id="employees" name="employees" placeholder="e.g., 10" min="1" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="industry">Business Industry (optional)</label>
-                                <input type="text" id="industry" placeholder="e.g., Retail, Healthcare, Education" />
+                                <input type="text" id="industry" name="industry" placeholder="e.g., Retail, Healthcare, Education" />
                             </div>
                             <div class="form-group">
                                 <label for="budget">Estimated Budget</label>
-                                <select id="budget">
+                                <select id="budget" name="budget">
                                     <option value="Under R5,000">Under R5,000</option>
                                     <option value="R5,000 – R10,000">R5,000 – R10,000</option>
                                     <option value="R10,000 – R25,000">R10,000 – R25,000</option>
@@ -286,7 +259,7 @@
                         <div class="form-row-single">
                             <div class="form-group">
                                 <label for="completion">Expected Completion</label>
-                                <select id="completion">
+                                <select id="completion" name="completion">
                                     <option value="As soon as possible">As soon as possible</option>
                                     <option value="Within a week">Within a week</option>
                                     <option value="Within a month">Within a month</option>
@@ -296,6 +269,7 @@
                         </div>
                     </div>
 
+
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-paperclip"></i> File Upload</div>
                         <div class="form-group">
@@ -303,12 +277,13 @@
                                 <i class="fa-regular fa-cloud-arrow-up"></i>
                                 <p>Click or drag files to upload</p>
                                 <p class="file-types">Supported: Images, PDFs, Word, ZIP, Screenshots</p>
-                                <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.zip,.rar" />
+                                <input type="file" id="fileInput" name="attachments" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.zip,.rar" />
                             </div>
                             <div class="file-list" id="fileList"></div>
                             <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Attach screenshots, documents or any files that will help us understand your request.</p>
                         </div>
                     </div>
+
 
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-envelope"></i> Communication Preferences</div>
@@ -322,14 +297,17 @@
 
                     <div class="form-section">
                         <div class="form-section-title"><i class="fa-regular fa-shield"></i> Privacy</div>
-                        <div class="form-group">
+                        <div class="form-group" id="privacyGroup">
                             <label style="display:flex; align-items:flex-start; gap:12px; font-weight:400; cursor:pointer;">
-                                <input type="checkbox" id="privacyConsent" style="width:18px; height:18px; margin-top:3px; accent-color:#0A3D91;" required />
+                                <input type="checkbox" id="privacyConsent" name="privacy_consent" style="width:18px; height:18px; margin-top:3px; accent-color:#0A3D91;" required />
                                 <span style="font-size:14px; color:#4b5563;">I agree that Datenal may contact me regarding this request and process my information according to the <a href="/legal/privacy-policy/" style="color:#0A3D91; font-weight:600;">Privacy Policy</a> and <a href="/legal/terms/" style="color:#0A3D91; font-weight:600;">Terms &amp; Conditions</a>.</span>
                             </label>
                             <div class="error-message" id="privacyError">You must agree to the privacy policy.</div>
                         </div>
                     </div>
+
+                    <!-- HIDDEN FIELDS FOR EMAILJS -->
+                    <input type="hidden" name="selected_services" id="selectedServicesEmail" />
 
                     <div class="submit-section">
                         <button type="submit" class="btn btn-primary">Submit Request <i class="fa-solid fa-arrow-right"></i></button>
@@ -344,14 +322,16 @@
                     <p>Thank you for contacting Datenal Technologies. We've received your request and will review it shortly. One of our team members will contact you using your preferred communication method.</p>
                     <div class="btn-group">
                         <a href="/" class="btn btn-primary">Return Home <i class="fa-solid fa-arrow-right"></i></a>
-                        <button class="btn btn-outline" style="border-color:#0A3D91; color:#0A3D91;" onclick="resetForm()">Submit Another Request</button>
+                        <button class="btn btn-outline" style="border-color:#0A3D91; color:#0A3D91;" onclick="location.reload()">Submit Another Request</button>
                     </div>
                 </div>
             </div>
 
-            <aside class="sidebar-card">
-                <h3>Need Help Choosing?</h3>
-                <p>Not sure which service you need? Don't worry. Simply describe your issue and we'll identify the correct service for you.</p>
+            <aside class="sidebar-card" id="summarySidebar">
+                <h3>Your Request</h3>
+                <p style="font-size:13px;color:#64748b;margin-bottom:16px;">Your selected services appear here automatically.</p>
+                <div id="summaryContainer"><div class="summary-empty">Add a service to start building your request.</div></div>
+                <div class="summary-total"><b>Billing:</b> <span id="billingSummary">—</span></div>
 
                 <hr class="sidebar-divider" />
 
@@ -359,22 +339,18 @@
                     <i class="fa-regular fa-clock"></i>
                     <div><strong>Average Response Time</strong> Within 24 hours</div>
                 </div>
-
                 <div class="sidebar-info">
                     <i class="fa-regular fa-calendar"></i>
                     <div><strong>Business Hours</strong> Monday – Friday, 08:00 – 17:00</div>
                 </div>
-
                 <div class="sidebar-info">
                     <i class="fa-regular fa-circle-exclamation"></i>
                     <div><strong>Emergency Support</strong> Available for urgent issues</div>
                 </div>
-
                 <div class="sidebar-info">
                     <i class="fa-regular fa-envelope"></i>
                     <div><strong>Email</strong> <a href="mailto:support@datenal.co.za" style="color:#0A3D91; font-weight:600;">support@datenal.co.za</a></div>
                 </div>
-
                 <div class="sidebar-info">
                     <i class="fa-regular fa-phone"></i>
                     <div><strong>Phone</strong> <a href="tel:+27123456789" style="color:#0A3D91; font-weight:600;">+27 12 345 6789</a></div>
@@ -457,7 +433,7 @@
     </div>
 </footer>
 
-<script src="/assets/js/request-form.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="request-form.js"></script>
 </body>
 </html>
