@@ -1,19 +1,3 @@
-/**
- * ============================================================
- * request-form.js — Datenal Technologies Service Request Form
- * ============================================================
- * 
- * This file handles:
- * - Service catalog with packages and additions
- * - Dynamic service request builder
- * - URL parameter auto-fill (/?service=xxx&package=yyy)
- * - Live request summary
- * - File upload management
- * - Form validation
- * - EmailJS integration (with placeholder credentials)
- * ============================================================
- */
-
 (function() {
     'use strict';
 
@@ -744,9 +728,9 @@
      */
     function submitToEmailJS(form) {
         // ===== REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS =====
-        const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-        const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-        const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+        const EMAILJS_PUBLIC_KEY = "nA316I3oSUXG5jxNA";
+        const EMAILJS_SERVICE_ID = "service_ufx5s3x";
+        const EMAILJS_TEMPLATE_ID = "template_qstvayl";
         // =================================================================
 
         // Initialize EmailJS
@@ -803,8 +787,8 @@
         const form = this;
 
         // Check if EmailJS credentials are configured
-        const publicKey = "YOUR_PUBLIC_KEY";
-        if (publicKey === "YOUR_PUBLIC_KEY") {
+        const publicKey = "nA316I3oSUXG5jxNA";
+        if (publicKey === "nA316I3oSUXG5jxNA") {
             // Demo mode: just show success
             form.style.display = 'none';
             document.getElementById('successMessage').classList.add('show');
