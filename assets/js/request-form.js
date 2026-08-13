@@ -755,13 +755,24 @@
         form.appendChild(prefField);
 
         // Submit to EmailJS
-        return emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
-            .then(() => {
-                form.style.display = 'none';
-                document.getElementById('successMessage').classList.add('show');
-                // Scroll to success message
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            })
+return emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+    .then(() => {
+        // Send Auto-Reply to the customer
+        return emailjs.sendForm(
+            EMAILJS_SERVICE_ID,
+            "template_xvs4wyh",
+            form
+        );
+    })
+    .then(() => {
+        form.style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+        document.getElementById('successMessage').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    })
+    
             .catch((err) => {
                 console.error('EmailJS error:', err);
                 alert('There was an error submitting your request. Please try again or contact us directly.\n\nError: ' + JSON.stringify(err));
