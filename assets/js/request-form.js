@@ -786,16 +786,6 @@
 
         const form = this;
 
-        // Check if EmailJS credentials are configured
-        const publicKey = "nA316I3oSUXG5jxNA";
-        if (publicKey === "nA316I3oSUXG5jxNA") {
-            // Demo mode: just show success
-            form.style.display = 'none';
-            document.getElementById('successMessage').classList.add('show');
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
-
         // Submit to EmailJS
         submitToEmailJS(form);
     });
